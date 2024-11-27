@@ -8,16 +8,19 @@ import ProfilePage from './pages/ProfilePage'
 import HomePage from './pages/HomePage'
 import { axiosInstance } from './lib/axios'
 import { useAuthStore } from './store/useAuthStore'
+import { useThemeStore } from './store/useThemeStore'
 import { Loader } from "lucide-react"
 import { Toaster } from 'react-hot-toast'
 
 const App = () => {
 
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const {theme} = useThemeStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
 
   console.log({ authUser });
 
@@ -28,7 +31,7 @@ const App = () => {
   )
 
   return (
-    <div>
+    <div data-theme={theme}>
       <Navbar />
 
       <Routes>
